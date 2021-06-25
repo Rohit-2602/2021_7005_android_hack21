@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#FE1748</color>
+    <color name="torch_red">#FE1748</color>
+    <color name="torch_red_light">#FD4A72</color>
+    <color name="gray">#6D6969</color>
+    <color name="mountain_meadow">#12D39A</color>
+    <color name="light_brown">#CE7B19</color>
+    <color name="light_pink">#E55979</color>
 </resources>
