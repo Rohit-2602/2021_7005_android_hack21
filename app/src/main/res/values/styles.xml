@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.Shrine.TextInputLayout.HintText</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="boxStrokeColor">#FE1748</item>
+        <item name="background">@color/white</item>
+        <item name="hintTextColor">@color/black</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="android:textColorHint">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Shrine.TextInputLayout.HintText" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextInputLayoutStyleStroke" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#FE1748</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="hintTextAppearance">@style/TextAppearance.Shrine.TextInputLayout.HintText</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="background">@color/white</item>
+        <item name="hintTextColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
+    </style>
+
+    <style name="CircularImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+</resources>
