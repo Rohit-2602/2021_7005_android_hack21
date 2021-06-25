@@ -5,7 +5,9 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.bonfire.R
 import com.example.bonfire.databinding.FragmentRoomBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RoomFragment: Fragment(R.layout.fragment_room) {
 
     private var _binding : FragmentRoomBinding ?= null

@@ -5,7 +5,9 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.bonfire.R
 import com.example.bonfire.databinding.FragmentProfileBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProfileFragment: Fragment(R.layout.fragment_profile) {
 
     private var _binding : FragmentProfileBinding ?= null

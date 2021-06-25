@@ -39,11 +39,11 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:hint="@string/password"
+        app:errorIconDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:passwordToggleEnabled="true"
-        app:errorIconDrawable="@null"
-        app:layout_constraintTop_toBottomOf="@id/email_inputLayout">
+        app:layout_constraintTop_toBottomOf="@id/email_inputLayout"
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_editText"
@@ -60,8 +60,8 @@
         android:id="@+id/login_Btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
         android:layout_marginTop="20dp"
+        android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_inputLayout" />
@@ -70,20 +70,34 @@
         android:id="@+id/or_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OR"
         android:layout_marginTop="20dp"
+        android:text="OR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_Btn" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/google_signin_Btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
+        android:src="@drawable/google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/or_textView"
         app:shapeAppearanceOverlay="@style/CircularImageView" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/red"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
