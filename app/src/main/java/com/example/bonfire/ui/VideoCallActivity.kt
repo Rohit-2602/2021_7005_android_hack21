@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.SurfaceView
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -20,9 +22,13 @@ import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
 import io.agora.rtc.video.VideoCanvas
 import io.agora.rtc.video.VideoEncoderConfiguration
+import kotlinx.android.synthetic.main.activity_video_call.*
+import kotlin.random.Random
 
 @AndroidEntryPoint
 class VideoCallActivity : AppCompatActivity() {
+
+    private var oldDirection: Int = 0
 
     private var mRtcEngine: RtcEngine? = null
     private val mRtcEventHandler = object : IRtcEngineEventHandler() {
@@ -48,6 +54,10 @@ class VideoCallActivity : AppCompatActivity() {
 
         if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) && checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA)) {
             initAgoraEngineAndJoinChannel()
+        }
+
+        button.setOnClickListener {
+            truthAndDare()
         }
     }
 
@@ -224,6 +234,35 @@ class VideoCallActivity : AppCompatActivity() {
         if (tag != null && tag as Int == uid) {
             surfaceView.visibility = if (muted) View.GONE else View.VISIBLE
         }
+    }
+
+    private fun truthAndDare() {
+        val newDirection = Random(System.nanoTime()).nextInt(3600) + 360
+        val pivotX = bottleImageView.width / 2
+        val pivotY = bottleImageView.height / 2
+        val rotate = RotateAnimation(oldDirection.toFloat(), newDirection.toFloat(), pivotX.toFloat(), pivotY.toFloat())
+        rotate.duration = 2000
+        rotate.fillAfter = true
+
+        oldDirection = newDirection
+
+        rotate.setAnimationListener(object: Animation.AnimationListener {
+            override fun onAnimationStart(p0: Animation?) {
+                bottleImageView.visibility = View.VISIBLE
+            }
+
+            override fun onAnimationEnd(p0: Animation?) {
+                Toast.makeText(this@VideoCallActivity, "ENDED", Toast.LENGTH_SHORT).show()
+                bottleImageView.visibility = View.INVISIBLE
+            }
+
+            override fun onAnimationRepeat(p0: Animation?) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        bottleImageView.startAnimation(rotate)
     }
 
     companion object {
