@@ -3,6 +3,7 @@ package com.example.bonfire.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bonfire.R
 import com.example.bonfire.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,6 +18,12 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
 
+        initUI()
+
+    }
+
+    private fun initUI() {
+        _binding?.rvOnlineUsers?.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
     }
 
     override fun onDestroyView() {

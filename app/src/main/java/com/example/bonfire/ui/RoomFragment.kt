@@ -1,5 +1,6 @@
 package com.example.bonfire.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -16,6 +17,12 @@ class RoomFragment: Fragment(R.layout.fragment_room) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentRoomBinding.bind(view)
+
+        binding.videoCallBtn.setOnClickListener {
+            val intent = Intent(requireActivity(), VideoCallActivity::class.java)
+            intent.putExtra("userName", "Rohit")
+            startActivity(intent)
+        }
 
     }
 
