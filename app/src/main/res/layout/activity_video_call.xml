@@ -52,7 +52,7 @@
                 android:layout_weight="20"
                 android:onClick="onLocalVideoMuteClicked"
                 android:scaleType="centerInside"
-                android:src="@drawable/audio_toggle_btn" />
+                android:src="@drawable/btn_voice" />
 
             <ImageView
                 android:layout_width="0dp"
@@ -60,7 +60,7 @@
                 android:layout_weight="20"
                 android:onClick="onLocalAudioMuteClicked"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_baseline_volume_mute_24" />
+                android:src="@drawable/btn_mute" />
 
             <ImageView
                 android:layout_width="0dp"
@@ -68,7 +68,7 @@
                 android:layout_weight="20"
                 android:onClick="onSwitchCameraClicked"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_baseline_flip_camera_ios_24" />
+                android:src="@drawable/btn_switch_camera" />
 
             <ImageView
                 android:layout_width="0dp"
