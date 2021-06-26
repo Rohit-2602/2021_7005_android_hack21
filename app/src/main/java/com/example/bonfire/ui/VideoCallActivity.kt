@@ -25,11 +25,6 @@ import java.util.*
 @AndroidEntryPoint
 class VideoCallActivity : AppCompatActivity() {
 
-    // Permissions
-    private val PERMISSION_REQ_ID = 22
-    private val REQUESTED_PERMISSIONS =
-        arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
-
     private var mRtcEngine: RtcEngine? = null
     private val mRtcEventHandler = object : IRtcEngineEventHandler() {
 
