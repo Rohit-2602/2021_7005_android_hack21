@@ -14,4 +14,7 @@
     <color name="mountain_meadow">#12D39A</color>
     <color name="light_brown">#CE7B19</color>
     <color name="light_pink">#E55979</color>
+
+    <color name="colorPrimary">#FE1748</color>
+
 </resources>
