@@ -4,16 +4,13 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/home_bottom_btn"
-        android:title="" />
-
+        android:title="Home" />
     <item
         android:id="@+id/roomFragment"
         android:icon="@drawable/camp_bottom_btn"
-        android:title="" />
-
+        android:title="Camp" />
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/account_bottom_btn"
-        android:title="" />
-
+        android:title="Profile" />
 </menu>
