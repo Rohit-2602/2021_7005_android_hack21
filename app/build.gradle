@@ -26,8 +26,8 @@ android {
         repositories {
             // Jit pack
             maven { url 'https://www.jitpack.io' }
-            }
         }
+    }
 
     buildTypes {
         release {
