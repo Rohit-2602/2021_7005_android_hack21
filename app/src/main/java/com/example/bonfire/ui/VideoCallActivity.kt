@@ -22,8 +22,7 @@ import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
 import io.agora.rtc.video.VideoCanvas
 import io.agora.rtc.video.VideoEncoderConfiguration
-import kotlinx.android.synthetic.main.activity_video_call.*
-import kotlin.random.Random
+import java.util.*
 
 @AndroidEntryPoint
 class VideoCallActivity : AppCompatActivity() {
@@ -36,7 +35,6 @@ class VideoCallActivity : AppCompatActivity() {
         override fun onUserJoined(uid: Int, elapsed: Int) {
             runOnUiThread { setupRemoteVideo(uid) }
         }
-
         override fun onUserOffline(uid: Int, reason: Int) {
             runOnUiThread { onRemoteUserLeft() }
         }
@@ -52,7 +50,10 @@ class VideoCallActivity : AppCompatActivity() {
 
         initAgoraEngineAndJoinChannel()
 
-        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) && checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA)) {
+        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) && checkSelfPermission(
+                Manifest.permission.CAMERA,
+                PERMISSION_REQ_ID_CAMERA
+            )) {
             initAgoraEngineAndJoinChannel()
         }
 
@@ -70,20 +71,26 @@ class VideoCallActivity : AppCompatActivity() {
 
     private fun checkSelfPermission(permission: String, requestCode: Int): Boolean {
         Log.i(LOG_TAG, "checkSelfPermission $permission $requestCode")
-        if (ContextCompat.checkSelfPermission(this,
-                permission) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                permission
+            ) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(this,
+            ActivityCompat.requestPermissions(
+                this,
                 arrayOf(permission),
-                requestCode)
+                requestCode
+            )
             return false
         }
         return true
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>, grantResults: IntArray
+    ) {
+
         Log.i(LOG_TAG, "onRequestPermissionsResult " + grantResults[0] + " " + requestCode)
 
         when (requestCode) {
@@ -104,6 +111,7 @@ class VideoCallActivity : AppCompatActivity() {
                 }
             }
         }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     private fun showLongToast(msg: String) {
@@ -147,12 +155,10 @@ class VideoCallActivity : AppCompatActivity() {
             iv.setColorFilter(resources.getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY)
         }
 
-        // Stops/Resumes sending the local audio stream.
         mRtcEngine!!.muteLocalAudioStream(iv.isSelected)
     }
 
     fun onSwitchCameraClicked(view: View) {
-        // Switches between front and rear cameras.
         mRtcEngine!!.switchCamera()
     }
 
@@ -162,22 +168,33 @@ class VideoCallActivity : AppCompatActivity() {
 
     private fun initializeAgoraEngine() {
         try {
-            mRtcEngine = RtcEngine.create(baseContext, getString(R.string.agora_app_id), mRtcEventHandler)
+            mRtcEngine = RtcEngine.create(
+                baseContext,
+                getString(R.string.agora_app_id),
+                mRtcEventHandler
+            )
         } catch (e: Exception) {
             Log.e(LOG_TAG, Log.getStackTraceString(e))
 
-            throw RuntimeException("NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(e))
+            throw RuntimeException(
+                "NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(
+                    e
+                )
+            )
         }
     }
 
     private fun setupVideoProfile() {
         mRtcEngine!!.enableVideo()
-//      mRtcEngine!!.setVideoProfile(Constants.VIDEO_PROFILE_360P, false) // Earlier than 2.3.0
 
-        mRtcEngine!!.setVideoEncoderConfiguration(VideoEncoderConfiguration(VideoEncoderConfiguration.VD_640x360,
-            VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
-            VideoEncoderConfiguration.STANDARD_BITRATE,
-            VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_FIXED_PORTRAIT))
+        mRtcEngine!!.setVideoEncoderConfiguration(
+            VideoEncoderConfiguration(
+                VideoEncoderConfiguration.VD_640x360,
+                VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
+                VideoEncoderConfiguration.STANDARD_BITRATE,
+                VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_FIXED_PORTRAIT
+            )
+        )
     }
 
     private fun setupLocalVideo() {
@@ -193,7 +210,8 @@ class VideoCallActivity : AppCompatActivity() {
         if (token!!.isEmpty()) {
             token = null
         }
-        mRtcEngine!!.joinChannel(token, "demoChannel1", "Extra Optional Data", 0) // if you do not specify the uid, we will generate the uid for you
+        val uid = Random().nextInt(10000000)+1
+        mRtcEngine!!.joinChannel(token, "demoChannel1", "Extra Optional Data", uid) // if you do not specify the uid, we will generate the uid for you
     }
 
     private fun setupRemoteVideo(uid: Int) {
@@ -207,7 +225,7 @@ class VideoCallActivity : AppCompatActivity() {
         container.addView(surfaceView)
         // Initializes the video view of a remote user.
         mRtcEngine!!.setupRemoteVideo(VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, uid))
-
+        mRtcEngine!!.setRemoteSubscribeFallbackOption(io.agora.rtc.Constants.STREAM_FALLBACK_OPTION_AUDIO_ONLY)
         surfaceView.tag = uid // for mark purpose
         val tipMsg = findViewById<TextView>(R.id.quick_tips_when_use_agora_sdk) // optional UI
         tipMsg.visibility = View.GONE
