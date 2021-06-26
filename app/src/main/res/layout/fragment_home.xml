@@ -1,103 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.HomeFragment"
     android:background="@color/bg_blue"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.HomeFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="3"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/friends_list"
+        android:textColor="#2B2828"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/friends_list"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            android:layout_weight="3"
-            android:layout_margin="10dp"/>
+    <ImageView
+        android:id="@+id/home_search_btn"
+        android:layout_width="31dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_weight="1"
+        android:scaleType="fitCenter"
+        android:src="@drawable/search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:src="@drawable/search"
-            android:layout_weight="1"
-            android:layout_gravity="center"/>
 
-    </LinearLayout>
+    <ImageView
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/online_image_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:src="@drawable/online_image_view"
-            android:layout_gravity="center"
-            android:layout_marginStart="20dp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="3"
-            android:text="@string/online"
-            android:textColor="@color/torch_red_light"
-            android:textSize="15sp"
-            android:layout_gravity="center"/>
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="3"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/online"
+        android:textColor="#FE1748"
+        android:textSize="20sp"
+        android:typeface="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvOnlineUsers"
-        android:layout_width="match_parent"
+        android:layout_width="404dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:itemCount="1"
-        tools:listitem="@layout/list_item_rv_online"/>
+        tools:listitem="@layout/list_item_rv_online"
+        tools:visibility="visible" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="22dp"
+        android:layout_weight="3"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/all_friends"
+        android:textColor="#FE1748"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvOnlineUsers" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/all_friends"
-            android:textColor="@color/torch_red_light"
-            android:textSize="30sp"
-            android:layout_weight="3"
-            android:layout_margin="10dp"/>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="39dp"
+        android:layout_height="31dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="45dp"
+        android:layout_weight="0.5"
+        android:scaleType="fitCenter"
+        android:src="@drawable/add_friend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvOnlineUsers" />
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:src="@drawable/add_friend"
-            android:layout_weight="0.5"
-            android:layout_gravity="center"/>
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:src="@drawable/dots_three"
-            android:layout_weight="0.5"
-            android:layout_gravity="center"/>
-
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="36dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="7dp"
+        android:layout_weight="0.5"
+        android:src="@drawable/dots_three"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvOnlineUsers" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAllFriends"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:itemCount="5"
-        tools:listitem="@layout/list_item_rv_all_friends"/>
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:itemCount="1"
+        tools:listitem="@layout/list_item_rv_all_friends"
+        tools:visibility="visible" />
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
