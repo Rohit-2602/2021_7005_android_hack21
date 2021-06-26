@@ -26,8 +26,8 @@ android {
         repositories {
             // Jit pack
             maven { url 'https://www.jitpack.io' }
-            }
         }
+    }
 
     buildTypes {
         release {
@@ -136,4 +136,6 @@ dependencies {
 //    implementation 'io.agora.rtc:full-sdk:2.4.1'
 //    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    //Card View
+    implementation "androidx.cardview:cardview:1.0.0"
 }
