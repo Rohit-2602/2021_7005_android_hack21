@@ -16,7 +16,7 @@
         android:background="@drawable/onlinecarddesignmainbh">
 
         <ImageView
-            android:id="@+id/userImageView"
+            android:id="@+id/online_user_img"
             android:layout_width="140dp"
             android:layout_height="146dp"
             android:layout_marginLeft="1dp"
@@ -48,6 +48,7 @@
             app:srcCompat="@drawable/online_card_bgdesign" />
 
         <TextView
+            android:id="@+id/online_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

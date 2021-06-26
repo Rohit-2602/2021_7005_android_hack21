@@ -18,7 +18,7 @@ class RoomFragment: Fragment(R.layout.fragment_room) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentRoomBinding.bind(view)
 
-        binding.videoCallBtn.setOnClickListener {
+        binding.joincampLay.setOnClickListener {
             val intent = Intent(requireActivity(), VideoCallActivity::class.java)
             intent.putExtra("userName", "Rohit")
             startActivity(intent)
