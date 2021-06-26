@@ -136,7 +136,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ivPic">
 
         <TextView
-            android:id="@+id/tvCard1"
+            android:id="@+id/tvCard3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -146,7 +146,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvCardNum"
+            android:id="@+id/tvCardNum3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
