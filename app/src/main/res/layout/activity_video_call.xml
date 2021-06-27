@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_video_chat_view"
     android:layout_width="match_parent"
@@ -14,14 +15,14 @@
 
     <FrameLayout
         android:id="@+id/local_video_view_container"
-        android:layout_width="160dp"
-        android:layout_height="284dp"
+        android:layout_width="150dp"
+        android:layout_height="211dp"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="@android:color/darker_gray" />
 
     <LinearLayout
@@ -35,15 +36,98 @@
             android:id="@+id/quick_tips_when_use_agora_sdk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="40dp"
             android:gravity="center_vertical|start"
-            android:text="1. Default channel name is demoChannel1\n2. Waiting for remote users\n3. This demo only supports 1v1 video calling" />
+            android:text="1. Default channel name is demoChannel1\n2. Waiting for remote users\n3. This demo only supports 1v1 video calling"
+            android:visibility="invisible"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/game_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="#292828"
+            android:text="Truth And Dare"
+            android:textColor="#FFFFFF"
+            android:textSize="40sp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteY="29dp">
+
+            <ImageView
+                android:id="@+id/games_btn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="20"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.89"
+                app:srcCompat="@drawable/ganes_btn" />
+
+            <ImageView
+                android:id="@+id/spin_btn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="160dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="20"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.89"
+                app:srcCompat="@drawable/spin_bottle" />
+
+            <ImageView
+                android:id="@+id/skip_btn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="230dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="20"
+                android:clickable="true"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.89"
+                app:srcCompat="@drawable/skip_btn"
+                tools:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/cancel_btn"
+                android:layout_width="35dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="335dp"
+                android:layout_marginBottom="15dp"
+                android:layout_weight="20"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.89"
+                app:srcCompat="@drawable/close_btn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -71,6 +155,7 @@
                 android:src="@drawable/btn_switch_camera" />
 
             <ImageView
+                android:id="@+id/leavebtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="20"
@@ -84,18 +169,57 @@
 
     <ImageView
         android:id="@+id/bottleImageView"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
         android:src="@drawable/bottle"
         android:visibility="invisible"
-        android:layout_centerInParent="true"/>
+        app:srcCompat="@drawable/bottle"
+        tools:visibility="visible" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Truth or dare"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/games_lay"
+        android:layout_width="match_parent"
+        android:layout_height="274dp"
+        android:background="#403E3F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="79dp"
+        tools:layout_editor_absoluteY="235dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Games"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Truth or dare"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.32" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
