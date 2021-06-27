@@ -24,6 +24,27 @@ class RoomFragment: Fragment(R.layout.fragment_room) {
             startActivity(intent)
         }
 
+        binding.joincampLay.visibility = View.VISIBLE
+        binding.startcampLayout.visibility = View.INVISIBLE
+
+        binding.joinOpenbtn.setOnClickListener {
+            joinRoom()
+        }
+
+        binding.startopenBtn.setOnClickListener {
+            startRoom()
+        }
+
+    }
+
+    private fun startRoom() {
+        binding.startcampLayout.visibility = View.VISIBLE
+        binding.joincampLay.visibility = View.INVISIBLE
+    }
+
+    private fun joinRoom() {
+        binding.joincampLay.visibility = View.VISIBLE
+        binding.startcampLayout.visibility = View.INVISIBLE
     }
 
     override fun onDestroyView() {
