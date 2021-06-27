@@ -2,8 +2,6 @@ package com.example.bonfire.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -50,13 +48,19 @@ class AuthActivity : AppCompatActivity() {
             if (loginState) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+
                 finish()
             }
             else {
-                Toast.makeText(this, "User Not", Toast.LENGTH_SHORT).show()
-                Log.i("Auth Activity Login", loginState.toString())
             }
         }
+    }
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(
+            R.anim.slide_in_left,
+            R.anim.slide_out_left
+        )
     }
 
 }

@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ProfileFragment"
     android:backgroundTint="@color/bg_blue"
-    >
+    tools:context=".ui.ProfileFragment">
 
     <ImageView
         android:id="@+id/ivDot"
@@ -42,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/ivPic"
+        android:id="@+id/profile_pic"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="24dp"
@@ -52,88 +51,19 @@
         app:layout_constraintTop_toBottomOf="@+id/tvYourProfile" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card1"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/red_gradient_slant"
-        android:backgroundTint="@color/red"
-        android:elevation="5dp"
-        app:cardCornerRadius="10dp"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivPic">
-
-        <TextView
-            android:id="@+id/tvCard1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="Total Friends"
-            android:textColor="@color/white"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/tvCardNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:text="101"
-            android:textColor="@color/white"
-            android:textSize="36dp" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card2"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/red_gradient_slant"
-        android:backgroundTint="@color/red"
-        android:elevation="5dp"
-
-        app:cardCornerRadius="10dp"
-        app:layout_constraintStart_toEndOf="@+id/card1"
-        app:layout_constraintTop_toBottomOf="@+id/ivPic">
-
-        <TextView
-            android:id="@+id/tvCard2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="Friends Online"
-            android:textColor="@color/white"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/tvCardNum2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:text="1"
-            android:textColor="@color/white"
-            android:textSize="36dp" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
         android:id="@+id/card3"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="116dp"
         android:background="@drawable/red_gradient_slant"
         android:elevation="5dp"
         app:cardBackgroundColor="@color/red"
-        app:cardCornerRadius="10dp"
 
+        app:cardCornerRadius="10dp"
         app:layout_constraintStart_toEndOf="@+id/card2"
-        app:layout_constraintTop_toBottomOf="@+id/ivPic">
+        app:layout_constraintTop_toBottomOf="@+id/profile_pic">
 
         <TextView
             android:id="@+id/tvCard3"
@@ -151,7 +81,79 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
-            android:text="10"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="36dp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="116dp"
+        android:background="@drawable/red_gradient_slant"
+        android:backgroundTint="@color/red"
+        android:elevation="5dp"
+
+        app:cardCornerRadius="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_pic">
+
+        <TextView
+            android:id="@+id/tvCard1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="Total Friends"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvCardNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="36dp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card2"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="116dp"
+        android:background="@drawable/red_gradient_slant"
+        android:backgroundTint="@color/red"
+
+        android:elevation="5dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintStart_toEndOf="@+id/card1"
+        app:layout_constraintTop_toBottomOf="@+id/profile_pic">
+
+        <TextView
+            android:id="@+id/tvCard2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="Friends Online"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvCardNum2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="0"
             android:textColor="@color/white"
             android:textSize="36dp" />
     </androidx.cardview.widget.CardView>
@@ -167,6 +169,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card2" />
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/salsa"
+        android:text="Name"
+        android:textColor="#FE1748"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_pic" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
