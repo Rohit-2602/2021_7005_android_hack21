@@ -94,10 +94,10 @@ class VideoCallActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("truthanddare")){
                     games_lay.visibility=View.GONE;
-                    game_name.setText("Truth And Dare")
-                    game_name.visibility=View.VISIBLE
-                    bottleImageView.visibility=View.VISIBLE
-                    spin_btn.visibility=View.VISIBLE
+//                    game_name.setText("Truth And Dare")
+//                    game_name.visibility=View.VISIBLE
+//                    bottleImageView.visibility=View.VISIBLE
+//                    spin_btn.visibility=View.VISIBLE
                     cancel_btn.visibility=View.VISIBLE
                     gamesvisible=false
                 }
@@ -139,19 +139,25 @@ class VideoCallActivity : AppCompatActivity() {
 
         dc_btn.setOnClickListener{
             mref.child("dumbcharades").setValue("ON")
+            bottleImageView.visibility=View.GONE
+            movienames_dc.visibility=View.VISIBLE
             games_lay.visibility=View.GONE
             spin_btn.visibility=View.GONE
-            skip_btn.visibility=View.GONE
             cancel_btn.visibility=View.GONE
-            bottleImageView.visibility=View.GONE
             val movies= arrayListOf<String>("3 Idiots","Sholay","Baahubali","Dangal","PK","DDLJ")
             movienames_dc.setText(movies.random())
+            game_name.setText("Dum Charades")
 
         }
 
         button.setOnClickListener {
             mref.child("truthanddare").setValue("ON")
+            bottleImageView.visibility=View.VISIBLE
+            games_lay.visibility=View.GONE
+            spin_btn.visibility=View.VISIBLE
+            cancel_btn.visibility=View.VISIBLE
             movienames_dc.visibility=View.GONE
+            game_name.setText("Truth n Dare")
 
 
         }
