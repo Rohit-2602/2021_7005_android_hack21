@@ -5,36 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".auth.LoginFragment"
-    android:background="@color/bg_blue"
-    >
+    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+    android:background="@color/bg_blue">
 
+    <ImageView
+        android:id="@+id/ivLogin"
+        android:layout_width="414dp"
+        android:layout_height="231dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_login"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="385dp"
+        android:layout_height="600dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/bg_white_rounded"
         android:elevation="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-<!--        <Button-->
-<!--            android:id="@+id/btnSignUpFrag"-->
-<!--            android:layout_width="250dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_marginTop="36dp"-->
-<!--            android:foreground="@drawable/btn_switch_to_signup"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email_inputLayout"
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="24dp"
             android:hint="@string/email"
             app:layout_constraintEnd_toEndOf="parent"
@@ -89,19 +89,19 @@
         <TextView
             android:id="@+id/or_textView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="19dp"
             android:layout_marginTop="36dp"
             android:text="OR"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password_inputLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/login_Btn" />
 
-        <com.google.android.material.imageview.ShapeableImageView
+        <ImageView
             android:id="@+id/google_signin_Btn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="36dp"
-            android:src="@drawable/google"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/google_sign_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/or_textView"
@@ -109,21 +109,22 @@
 
         <Button
             android:id="@+id/login_Btn"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="Login"
-            android:backgroundTint="@color/red"
+            android:layout_marginTop="66dp"
             android:background="@drawable/bg_red_round"
+            android:backgroundTint="@color/red"
+            android:text="Login"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/google_signin_Btn" />
+            app:layout_constraintTop_toBottomOf="@+id/password_inputLayout" />
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="80dp"
             android:indeterminate="true"
             android:indeterminateTint="@color/red"
             android:indeterminateTintMode="src_atop"

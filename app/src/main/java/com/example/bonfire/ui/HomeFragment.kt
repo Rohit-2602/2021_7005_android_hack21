@@ -13,12 +13,15 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
     private var _binding : FragmentHomeBinding ?= null
     private val binding get() = _binding!!
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
 
         initUI()
+        initOnlineRv();
+    }
+
+    private fun initOnlineRv() {
 
     }
 

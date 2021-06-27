@@ -1,11 +1,13 @@
 package com.example.bonfire.ui
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.SurfaceView
+import android.view.VerifiedInputEvent
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
@@ -16,21 +18,33 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.bonfire.MainActivity
 import com.example.bonfire.R
+import com.example.bonfire.auth.AuthActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import dagger.hilt.android.AndroidEntryPoint
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
 import io.agora.rtc.video.VideoCanvas
 import io.agora.rtc.video.VideoEncoderConfiguration
+import kotlinx.android.synthetic.main.activity_video_call.*
 import java.util.*
 
 @AndroidEntryPoint
 class VideoCallActivity : AppCompatActivity() {
 
     private var oldDirection: Int = 0
-
     private var mRtcEngine: RtcEngine? = null
-    private val mRtcEventHandler = object : IRtcEngineEventHandler() {
+    var gamesvisible = false
+    private val mref = FirebaseDatabase.getInstance().getReference("CurrentMeeting")
+    private var mauth: FirebaseAuth = FirebaseAuth.getInstance()
+    private var spinningkibari=false
+    private val mRtcEventHandler = object : IRtcEngineEventHandler()
+   {
 
         override fun onUserJoined(uid: Int, elapsed: Int) {
             runOnUiThread { setupRemoteVideo(uid) }
@@ -46,8 +60,13 @@ class VideoCallActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_video_call)
 
+        setContentView(R.layout.activity_video_call)
+        games_lay.visibility=View.GONE
+        game_name.visibility=View.GONE
+        spin_btn.visibility=View.GONE
+        skip_btn.visibility=View.GONE
+        cancel_btn.visibility=View.GONE
         initAgoraEngineAndJoinChannel()
 
         if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) && checkSelfPermission(
@@ -57,8 +76,79 @@ class VideoCallActivity : AppCompatActivity() {
             initAgoraEngineAndJoinChannel()
         }
 
+        games_btn.setOnClickListener{
+            if (gamesvisible == false) {
+                games_lay.setVisibility(View.VISIBLE)
+                gamesvisible = true
+            } else if (gamesvisible == true) {
+                games_lay.setVisibility(View.GONE)
+                gamesvisible=false
+            }
+        }
+        mref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.hasChild("truthanddare")){
+                    games_lay.visibility=View.GONE;
+                    game_name.setText("Truth And Dare")
+                    game_name.visibility=View.VISIBLE
+                    bottleImageView.visibility=View.VISIBLE
+                    spin_btn.visibility=View.VISIBLE
+                    cancel_btn.visibility=View.VISIBLE
+                    gamesvisible=false
+                }
+                if(!snapshot.hasChild("truthanddare")){
+                    bottleImageView.visibility=View.GONE
+                    spin_btn.visibility=View.GONE
+                    game_name.visibility=View.GONE
+                    cancel_btn.visibility=View.GONE
+                }
+
+                if(snapshot.hasChild("truthanddare") && snapshot.child("truthanddare").hasChild("turn") && snapshot.child("truthanddare").child("turn").value!!.toString().equals(mauth.currentUser!!.displayName)){
+                  //  Toast.makeText(baseContext,"You Are The Target On Bottle",Toast.LENGTH_SHORT).show()
+                    mref.child("truthanddare").setValue("ON")
+                    mref.child("spinactive").setValue("NO")
+                }
+                else if(snapshot.hasChild("truthanddare") && snapshot.child("truthanddare").hasChild("turn") &&!snapshot.child("truthanddare").child("turn").value!!.toString().equals(mauth.currentUser!!.displayName)){
+                   // Toast.makeText(baseContext,snapshot.child("truthanddare").child("turn").value.toString()+" Is The Target On The Bottle!",Toast.LENGTH_SHORT).show()
+                    mref.child("truthanddare").setValue("ON")
+                    mref.child("spinactive").setValue("NO")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
         button.setOnClickListener {
-            truthAndDare()
+            mref.child("truthanddare").setValue("ON")
+
+
+
+        }
+        cancel_btn.setOnClickListener {
+
+            bottleImageView.visibility=View.GONE
+            spin_btn.visibility=View.GONE
+            cancel_btn.visibility=View.GONE
+            mref.child("truthanddare").removeValue()
+
+
+        }
+        spin_btn.setOnClickListener{
+            mref.child("spinactive").setValue("YES")
+            spinningkibari=true
+            mref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.child("spinactive").value?.equals("YES")!!){
+                        truthAndDare()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+
         }
     }
 
@@ -233,6 +323,8 @@ class VideoCallActivity : AppCompatActivity() {
 
     private fun leaveChannel() {
         mRtcEngine!!.leaveChannel()
+        mref.removeValue()
+
     }
 
     private fun onRemoteUserLeft() {
@@ -255,33 +347,68 @@ class VideoCallActivity : AppCompatActivity() {
     }
 
     private fun truthAndDare() {
-        val newDirection = Random(System.nanoTime()).nextInt(3600) + 360
-        val pivotX = bottleImageView.width / 2
-        val pivotY = bottleImageView.height / 2
-        val rotate = RotateAnimation(oldDirection.toFloat(), newDirection.toFloat(), pivotX.toFloat(), pivotY.toFloat())
-        rotate.duration = 2000
-        rotate.fillAfter = true
+            val turncheck = (0..1).random()
 
-        oldDirection = newDirection
+            val newDirection = Random(System.nanoTime()).nextInt(3600) + 360
+            val pivotX = bottleImageView.width / 2
+            val pivotY = bottleImageView.height / 2
+            val rotate = RotateAnimation(
+                oldDirection.toFloat(),
+                newDirection.toFloat(),
+                pivotX.toFloat(),
+                pivotY.toFloat()
+            )
+            rotate.duration = 2000
+            rotate.fillAfter = true
 
-        rotate.setAnimationListener(object: Animation.AnimationListener {
-            override fun onAnimationStart(p0: Animation?) {
-                bottleImageView.visibility = View.VISIBLE
-            }
+            oldDirection = newDirection
 
-            override fun onAnimationEnd(p0: Animation?) {
-                Toast.makeText(this@VideoCallActivity, "ENDED", Toast.LENGTH_SHORT).show()
-                bottleImageView.visibility = View.INVISIBLE
-            }
+            rotate.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(p0: Animation?) {
+                    bottleImageView.visibility = View.VISIBLE
+                }
 
-            override fun onAnimationRepeat(p0: Animation?) {
-                TODO("Not yet implemented")
-            }
+                override fun onAnimationEnd(p0: Animation?) {
 
-        })
+                        if (turncheck.equals(0)) {
+                            mref.addValueEventListener(object : ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot ) {
+                                    if(snapshot.child("spinactive").value?.equals("YES")!! && spinningkibari==true) {
+                                        mref.child("truthanddare").child("turn")
+                                            .setValue(snapshot.child("User1").getValue())
+                                    }
+                                }
 
-        bottleImageView.startAnimation(rotate)
+                                override fun onCancelled(error: DatabaseError) {}
+                            })
+
+
+                    if (turncheck.equals(1)) {
+                        mref.addValueEventListener(object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if(snapshot.child("spinactive").value!!.equals("YES") && spinningkibari==true) {
+                                    mref.child("truthanddare").child("turn")
+                                        .setValue(snapshot.child("User2").getValue())
+                                }
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {}
+                        })
+                    }
+                }
+                    bottleImageView.visibility = View.INVISIBLE
+                }
+
+                override fun onAnimationRepeat(p0: Animation?) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+
+            bottleImageView.startAnimation(rotate)
+
     }
+
 
     companion object {
 
@@ -290,4 +417,7 @@ class VideoCallActivity : AppCompatActivity() {
         private const val PERMISSION_REQ_ID_RECORD_AUDIO = 22
         private const val PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1
     }
+
+
+
 }
