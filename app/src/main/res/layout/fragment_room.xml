@@ -51,7 +51,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/startcamp_layout"
         android:layout_width="411dp"
-        android:layout_height="656dp"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
@@ -60,7 +60,7 @@
         <ImageView
             android:id="@+id/create_btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:scaleType="fitCenter"
             android:src="@drawable/startcamp_img"
             app:layout_constraintBottom_toBottomOf="parent"
