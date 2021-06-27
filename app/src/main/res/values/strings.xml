@@ -8,4 +8,6 @@
     <string name="friends_list">Friends List</string>
     <string name="online">Online</string>
     <string name="all_friends">All Friends</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="name">Name</string>
 </resources>
