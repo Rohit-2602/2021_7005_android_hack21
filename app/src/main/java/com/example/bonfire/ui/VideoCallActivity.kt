@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.example.bonfire.MainActivity
 import com.example.bonfire.R
 import com.example.bonfire.auth.AuthActivity
@@ -44,6 +45,8 @@ class VideoCallActivity : AppCompatActivity() {
     private var mauth: FirebaseAuth = FirebaseAuth.getInstance()
     private var spinningkibari=false
     private val mRtcEventHandler = object : IRtcEngineEventHandler()
+
+
    {
 
         override fun onUserJoined(uid: Int, elapsed: Int) {
@@ -68,6 +71,7 @@ class VideoCallActivity : AppCompatActivity() {
         spin_btn.visibility=View.GONE
         skip_btn.visibility=View.GONE
         cancel_btn.visibility=View.GONE
+        bottleImageView.visibility=View.GONE
         initAgoraEngineAndJoinChannel()
 
         if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) && checkSelfPermission(
@@ -101,7 +105,6 @@ class VideoCallActivity : AppCompatActivity() {
                     games_lay.visibility=View.GONE;
                     game_name.setText("Dumb Charades")
                     movienames_dc.visibility=View.VISIBLE
-                    movienames_dc.setText("Abcd(Random movie name)")
                     game_name.visibility=View.VISIBLE
                     cancel_btn.visibility=View.VISIBLE
                 }
@@ -136,13 +139,19 @@ class VideoCallActivity : AppCompatActivity() {
 
         dc_btn.setOnClickListener{
             mref.child("dumbcharades").setValue("ON")
-
+            games_lay.visibility=View.GONE
+            spin_btn.visibility=View.GONE
+            skip_btn.visibility=View.GONE
+            cancel_btn.visibility=View.GONE
+            bottleImageView.visibility=View.GONE
+            val movies= arrayListOf<String>("3 Idiots","Sholay","Baahubali","Dangal","PK","DDLJ")
+            movienames_dc.setText(movies.random())
 
         }
 
         button.setOnClickListener {
             mref.child("truthanddare").setValue("ON")
-
+            movienames_dc.visibility=View.GONE
 
 
         }
