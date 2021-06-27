@@ -69,7 +69,6 @@ class VideoCallActivity : AppCompatActivity() {
         game_name.visibility=View.GONE
         movienames_dc.visibility=View.GONE
         spin_btn.visibility=View.GONE
-        skip_btn.visibility=View.GONE
         cancel_btn.visibility=View.GONE
         bottleImageView.visibility=View.GONE
         initAgoraEngineAndJoinChannel()
