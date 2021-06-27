@@ -142,13 +142,13 @@ class VideoCallActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             mref.child("truthanddare").setValue("ON")
-
+            bottleImageView.visibility = View.VISIBLE
 
 
         }
         cancel_btn.setOnClickListener {
 
-            bottleImageView.visibility=View.GONE
+            bottleImageView.visibility=View.INVISIBLE
             spin_btn.visibility=View.GONE
             cancel_btn.visibility=View.GONE
             mref.child("truthanddare").removeValue()
@@ -302,7 +302,7 @@ class VideoCallActivity : AppCompatActivity() {
 
         mRtcEngine!!.setVideoEncoderConfiguration(
             VideoEncoderConfiguration(
-                VideoEncoderConfiguration.VD_640x360,
+                VideoEncoderConfiguration.VD_320x240,
                 VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
                 VideoEncoderConfiguration.STANDARD_BITRATE,
                 VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_FIXED_PORTRAIT
