@@ -164,7 +164,7 @@
         android:layout_height="150dp"
         android:layout_centerInParent="true"
         android:src="@drawable/bottle"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:srcCompat="@drawable/bottle"
         tools:visibility="invisible" />
 
