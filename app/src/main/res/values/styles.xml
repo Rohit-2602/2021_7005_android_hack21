@@ -30,4 +30,10 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="bottom_nav_bar"  parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/light_brown</item>>
+\
+    </style>
 </resources>
