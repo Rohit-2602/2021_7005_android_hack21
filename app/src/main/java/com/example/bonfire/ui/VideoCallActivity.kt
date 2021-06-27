@@ -64,6 +64,7 @@ class VideoCallActivity : AppCompatActivity() {
         setContentView(R.layout.activity_video_call)
         games_lay.visibility=View.GONE
         game_name.visibility=View.GONE
+        movienames_dc.visibility=View.GONE
         spin_btn.visibility=View.GONE
         skip_btn.visibility=View.GONE
         cancel_btn.visibility=View.GONE
@@ -96,14 +97,27 @@ class VideoCallActivity : AppCompatActivity() {
                     cancel_btn.visibility=View.VISIBLE
                     gamesvisible=false
                 }
-                if(!snapshot.hasChild("truthanddare")){
+               else if(snapshot.hasChild("dumbcharades")){
+                    games_lay.visibility=View.GONE;
+                    game_name.setText("Dumb Charades")
+                    movienames_dc.visibility=View.VISIBLE
+                    movienames_dc.setText("Abcd(Random movie name)")
+                    game_name.visibility=View.VISIBLE
+                    cancel_btn.visibility=View.VISIBLE
+                }
+                else if(!snapshot.hasChild("dumbcharades")){
+                    game_name.visibility=View.GONE
+                    movienames_dc.visibility=View.GONE
+                    cancel_btn.visibility=View.GONE
+                }
+              else  if(!snapshot.hasChild("truthanddare")){
                     bottleImageView.visibility=View.GONE
                     spin_btn.visibility=View.GONE
                     game_name.visibility=View.GONE
                     cancel_btn.visibility=View.GONE
                 }
 
-                if(snapshot.hasChild("truthanddare") && snapshot.child("truthanddare").hasChild("turn") && snapshot.child("truthanddare").child("turn").value!!.toString().equals(mauth.currentUser!!.displayName)){
+              else  if(snapshot.hasChild("truthanddare") && snapshot.child("truthanddare").hasChild("turn") && snapshot.child("truthanddare").child("turn").value!!.toString().equals(mauth.currentUser!!.displayName)){
                   //  Toast.makeText(baseContext,"You Are The Target On Bottle",Toast.LENGTH_SHORT).show()
                     mref.child("truthanddare").setValue("ON")
                     mref.child("spinactive").setValue("NO")
@@ -119,6 +133,13 @@ class VideoCallActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         })
+
+        dc_btn.setOnClickListener{
+            mref.child("dumbcharades").setValue("ON")
+
+
+        }
+
         button.setOnClickListener {
             mref.child("truthanddare").setValue("ON")
 
@@ -131,7 +152,7 @@ class VideoCallActivity : AppCompatActivity() {
             spin_btn.visibility=View.GONE
             cancel_btn.visibility=View.GONE
             mref.child("truthanddare").removeValue()
-
+            mref.child("dumbcharades").removeValue()
 
         }
         spin_btn.setOnClickListener{
@@ -151,6 +172,8 @@ class VideoCallActivity : AppCompatActivity() {
 
         }
     }
+
+
 
     private fun initAgoraEngineAndJoinChannel() {
         initializeAgoraEngine()
