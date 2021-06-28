@@ -287,6 +287,7 @@ class VideoCallActivity : AppCompatActivity() {
     }
 
     fun onEncCallClicked(view: View) {
+        leaveChannel()
         finish()
     }
 
