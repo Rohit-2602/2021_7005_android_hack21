@@ -84,52 +84,6 @@ class VideoCallActivity : AppCompatActivity() {
             bottleImageView.visibility=View.GONE
 
         }
-//        mref.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                if(snapshot.hasChild("truthanddare")){
-//                    games_lay.visibility=View.GONE;
-////                    game_name.setText("Truth And Dare")
-////                    game_name.visibility=View.VISIBLE
-////                    bottleImageView.visibility=View.VISIBLE
-////                    spin_btn.visibility=View.VISIBLE
-//                    cancel_btn.visibility=View.VISIBLE
-//                    gamesvisible=false
-//                }
-//               else if(snapshot.hasChild("dumbcharades")){
-//                    games_lay.visibility=View.GONE;
-//                    game_name.setText("Dumb Charades")
-//                    movienames_dc.visibility=View.VISIBLE
-//                    game_name.visibility=View.VISIBLE
-//                    cancel_btn.visibility=View.VISIBLE
-//                }
-//                else if(!snapshot.hasChild("dumbcharades")){
-//                    game_name.visibility=View.GONE
-//                    movienames_dc.visibility=View.GONE
-//                    cancel_btn.visibility=View.GONE
-//                }
-//              else  if(!snapshot.hasChild("truthanddare")){
-//                    bottleImageView.visibility=View.GONE
-//                    spin_btn.visibility=View.GONE
-//                    game_name.visibility=View.GONE
-//                    cancel_btn.visibility=View.GONE
-//                }
-//
-//              else  if(snapshot.hasChild("truthanddare") && snapshot.child("truthanddare").hasChild("turn") && snapshot.child("truthanddare").child("turn").value!!.toString().equals(mauth.currentUser!!.displayName)){
-//                  //  Toast.makeText(baseContext,"You Are The Target On Bottle",Toast.LENGTH_SHORT).show()
-//                    mref.child("truthanddare").setValue("ON")
-//                    mref.child("spinactive").setValue("NO")
-//                }
-//                else if(snapshot.hasChild("truthanddare") && snapshot.child("truthanddare").hasChild("turn") &&!snapshot.child("truthanddare").child("turn").value!!.toString().equals(mauth.currentUser!!.displayName)){
-//                   // Toast.makeText(baseContext,snapshot.child("truthanddare").child("turn").value.toString()+" Is The Target On The Bottle!",Toast.LENGTH_SHORT).show()
-//                    mref.child("truthanddare").setValue("ON")
-//                    mref.child("spinactive").setValue("NO")
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//
-//            }
-//        })
 
         dc_btn.setOnClickListener{
             bottleImageView.visibility=View.GONE
@@ -162,8 +116,6 @@ class VideoCallActivity : AppCompatActivity() {
             spin_btn.visibility=View.GONE
             cancel_btn.visibility=View.GONE
             game_name.visibility=View.GONE
-//            mref.child("truthanddare").removeValue()
-//            mref.child("dumbcharades").removeValue()
 
         }
         spin_btn.setOnClickListener{
