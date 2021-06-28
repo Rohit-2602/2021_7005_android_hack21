@@ -7,30 +7,49 @@
     android:layout_height="match_parent"
     tools:context=".ui.VideoCallActivity">
 
-    <FrameLayout
-        android:id="@+id/remote_video_view_container"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white" />
-
-    <FrameLayout
-        android:id="@+id/local_video_view_container"
-        android:layout_width="150dp"
-        android:layout_height="211dp"
+        android:orientation="vertical"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:background="@android:color/darker_gray" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true">
+
+        <FrameLayout
+            android:id="@+id/remote_video_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/white" />
+
+        <FrameLayout
+            android:id="@+id/local_video_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/game_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="#292828"
+        android:text="Truth And Dare"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:background="#FFFFFF"
+        android:background="@android:color/transparent"
         android:orientation="vertical">
 
         <TextView
@@ -46,100 +65,56 @@
             tools:visibility="gone" />
 
         <TextView
-            android:id="@+id/game_name"
+            android:id="@+id/movienames_dc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="#292828"
-            android:text="Truth And Dare"
+            android:background="#434242"
+            android:fontFamily="@font/roboto_medium"
+            android:text="moviename"
             android:textColor="#FFFFFF"
-            android:textSize="40sp" />
+            android:textSize="17sp"
+            android:layout_gravity="center"
+            />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:background="#FFFFFF"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteY="29dp">
-
-            <TextView
-                android:id="@+id/movienames_dc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#434242"
-                android:fontFamily="@font/roboto_medium"
-                android:text="moviename"
-                android:textColor="#FFFFFF"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteY="29dp"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/games_btn"
-                android:layout_width="40dp"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
                 android:layout_weight="20"
                 android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.89"
-                app:srcCompat="@drawable/ganes_btn" />
+                app:srcCompat="@drawable/ganes_btn"
+                app:tint="@color/torch_red_light" />
 
             <ImageView
                 android:id="@+id/spin_btn"
-                android:layout_width="40dp"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="160dp"
-                android:layout_marginBottom="10dp"
                 android:layout_weight="20"
                 android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.89"
-                app:srcCompat="@drawable/spin_bottle" />
-
-            <ImageView
-                android:id="@+id/skip_btn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="230dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="20"
-                android:clickable="true"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.89"
-                app:srcCompat="@drawable/skip_btn"
-                tools:visibility="invisible" />
+                app:srcCompat="@drawable/spin_bottle"
+                app:tint="@color/torch_red_light" />
 
             <ImageView
                 android:id="@+id/cancel_btn"
-                android:layout_width="35dp"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="340dp"
-                android:layout_marginBottom="15dp"
                 android:layout_weight="20"
                 android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.89"
-                app:srcCompat="@drawable/close_btn" />
+                app:srcCompat="@drawable/close_btn"
+                app:tint="@color/torch_red_light" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -189,9 +164,9 @@
         android:layout_height="150dp"
         android:layout_centerInParent="true"
         android:src="@drawable/bottle"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:srcCompat="@drawable/bottle"
-        tools:visibility="visible" />
+        tools:visibility="invisible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/games_lay"
