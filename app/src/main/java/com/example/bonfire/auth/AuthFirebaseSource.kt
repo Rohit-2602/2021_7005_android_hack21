@@ -5,8 +5,8 @@ import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
+import com.example.bonfire.Constants.LOGIN_STATE_KEY
 import com.example.bonfire.MainActivity
-import com.example.bonfire.const.LOGIN_STATE_KEY
 import com.example.bonfire.data.PreferencesManager
 import com.example.bonfire.data.User
 import com.google.firebase.auth.FirebaseAuth

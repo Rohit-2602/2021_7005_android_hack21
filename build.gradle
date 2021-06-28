@@ -8,9 +8,6 @@ buildscript {
         hiltVersion = "2.28.3-alpha"
         lifecycleVersion = "2.3.1"
         navigationVersion = "2.3.5"
-        pagingVersion = '3.0.0-alpha05'
-        retrofitVersion = '2.9.0'
-        roomVersion = "2.3.0"
     }
     repositories {
         google()

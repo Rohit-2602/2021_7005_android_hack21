@@ -7,9 +7,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.bonfire.Constants.GOOGLE_SIGN_IN
 import com.example.bonfire.MainActivity
 import com.example.bonfire.R
-import com.example.bonfire.const.GOOGLE_SIGN_IN
 import com.example.bonfire.data.User
 import com.example.bonfire.databinding.FragmentLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn

@@ -1,13 +1,11 @@
 package com.example.bonfire.ui
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.SurfaceView
-import android.view.VerifiedInputEvent
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
@@ -18,10 +16,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
-import com.example.bonfire.MainActivity
+import com.example.bonfire.Constants
 import com.example.bonfire.R
-import com.example.bonfire.auth.AuthActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -44,10 +40,7 @@ class VideoCallActivity : AppCompatActivity() {
     private val mref = FirebaseDatabase.getInstance().getReference("CurrentMeeting")
     private var mauth: FirebaseAuth = FirebaseAuth.getInstance()
     private var spinningkibari=false
-    private val mRtcEventHandler = object : IRtcEngineEventHandler()
-
-
-   {
+    private val mRtcEventHandler = object : IRtcEngineEventHandler() {
 
         override fun onUserJoined(uid: Int, elapsed: Int) {
             runOnUiThread { setupRemoteVideo(uid) }
@@ -91,52 +84,6 @@ class VideoCallActivity : AppCompatActivity() {
             bottleImageView.visibility=View.GONE
 
         }
-//        mref.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                if(snapshot.hasChild("truthanddare")){
-//                    games_lay.visibility=View.GONE;
-////                    game_name.setText("Truth And Dare")
-////                    game_name.visibility=View.VISIBLE
-////                    bottleImageView.visibility=View.VISIBLE
-////                    spin_btn.visibility=View.VISIBLE
-//                    cancel_btn.visibility=View.VISIBLE
-//                    gamesvisible=false
-//                }
-//               else if(snapshot.hasChild("dumbcharades")){
-//                    games_lay.visibility=View.GONE;
-//                    game_name.setText("Dumb Charades")
-//                    movienames_dc.visibility=View.VISIBLE
-//                    game_name.visibility=View.VISIBLE
-//                    cancel_btn.visibility=View.VISIBLE
-//                }
-//                else if(!snapshot.hasChild("dumbcharades")){
-//                    game_name.visibility=View.GONE
-//                    movienames_dc.visibility=View.GONE
-//                    cancel_btn.visibility=View.GONE
-//                }
-//              else  if(!snapshot.hasChild("truthanddare")){
-//                    bottleImageView.visibility=View.GONE
-//                    spin_btn.visibility=View.GONE
-//                    game_name.visibility=View.GONE
-//                    cancel_btn.visibility=View.GONE
-//                }
-//
-//              else  if(snapshot.hasChild("truthanddare") && snapshot.child("truthanddare").hasChild("turn") && snapshot.child("truthanddare").child("turn").value!!.toString().equals(mauth.currentUser!!.displayName)){
-//                  //  Toast.makeText(baseContext,"You Are The Target On Bottle",Toast.LENGTH_SHORT).show()
-//                    mref.child("truthanddare").setValue("ON")
-//                    mref.child("spinactive").setValue("NO")
-//                }
-//                else if(snapshot.hasChild("truthanddare") && snapshot.child("truthanddare").hasChild("turn") &&!snapshot.child("truthanddare").child("turn").value!!.toString().equals(mauth.currentUser!!.displayName)){
-//                   // Toast.makeText(baseContext,snapshot.child("truthanddare").child("turn").value.toString()+" Is The Target On The Bottle!",Toast.LENGTH_SHORT).show()
-//                    mref.child("truthanddare").setValue("ON")
-//                    mref.child("spinactive").setValue("NO")
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//
-//            }
-//        })
 
         dc_btn.setOnClickListener{
             bottleImageView.visibility=View.GONE
@@ -169,8 +116,6 @@ class VideoCallActivity : AppCompatActivity() {
             spin_btn.visibility=View.GONE
             cancel_btn.visibility=View.GONE
             game_name.visibility=View.GONE
-//            mref.child("truthanddare").removeValue()
-//            mref.child("dumbcharades").removeValue()
 
         }
         spin_btn.setOnClickListener{
@@ -302,7 +247,7 @@ class VideoCallActivity : AppCompatActivity() {
         try {
             mRtcEngine = RtcEngine.create(
                 baseContext,
-                getString(R.string.agora_app_id),
+                Constants.AGORA_APP_ID,
                 mRtcEventHandler
             )
         } catch (e: Exception) {
@@ -338,7 +283,7 @@ class VideoCallActivity : AppCompatActivity() {
     }
 
     private fun joinChannel() {
-        var token: String? = getString(R.string.agora_access_token)
+        var token: String? = Constants.AGORA_ACCESS_TOKEN
         if (token!!.isEmpty()) {
             token = null
         }

@@ -3,8 +3,6 @@
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="re_enter_password">Re-Enter Password</string>
-    <string name="agora_app_id">626a892704ba4e81bb88c4539b8b26c9</string>
-    <string name="agora_access_token">006626a892704ba4e81bb88c4539b8b26c9IAANJoUemHnPd9z75oHAHpDdqOTsO2gXpVJ6B3OPfrYB0uIVUyEAAAAAEAAm+nFWyrvYYAEAAQDKu9hg</string>
     <string name="friends_list">Friends List</string>
     <string name="online">Online</string>
     <string name="all_friends">All Friends</string>
