@@ -1,13 +1,11 @@
 package com.example.bonfire.ui
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.SurfaceView
-import android.view.VerifiedInputEvent
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
@@ -18,10 +16,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
-import com.example.bonfire.MainActivity
+import com.example.bonfire.Constants
 import com.example.bonfire.R
-import com.example.bonfire.auth.AuthActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -44,10 +40,7 @@ class VideoCallActivity : AppCompatActivity() {
     private val mref = FirebaseDatabase.getInstance().getReference("CurrentMeeting")
     private var mauth: FirebaseAuth = FirebaseAuth.getInstance()
     private var spinningkibari=false
-    private val mRtcEventHandler = object : IRtcEngineEventHandler()
-
-
-   {
+    private val mRtcEventHandler = object : IRtcEngineEventHandler() {
 
         override fun onUserJoined(uid: Int, elapsed: Int) {
             runOnUiThread { setupRemoteVideo(uid) }
@@ -301,7 +294,7 @@ class VideoCallActivity : AppCompatActivity() {
         try {
             mRtcEngine = RtcEngine.create(
                 baseContext,
-                getString(R.string.agora_app_id),
+                Constants.AGORA_APP_ID,
                 mRtcEventHandler
             )
         } catch (e: Exception) {
@@ -337,7 +330,7 @@ class VideoCallActivity : AppCompatActivity() {
     }
 
     private fun joinChannel() {
-        var token: String? = getString(R.string.agora_access_token)
+        var token: String? = Constants.AGORA_ACCESS_TOKEN
         if (token!!.isEmpty()) {
             token = null
         }

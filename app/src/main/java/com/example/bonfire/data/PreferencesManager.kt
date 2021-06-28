@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.datastore.preferences.createDataStore
 import androidx.datastore.preferences.edit
 import androidx.datastore.preferences.preferencesKey
-import com.example.bonfire.const
-import com.example.bonfire.const.USER_PREFERENCES
+import com.example.bonfire.Constants
+import com.example.bonfire.Constants.USER_PREFERENCES
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class PreferencesManager @Inject constructor(@ApplicationContext context: Contex
 
     val loginStateFlow = dataStore.data
         .map { preferences ->
-            val loginStateKey = preferencesKey<Boolean>(const.LOGIN_STATE_KEY)
+            val loginStateKey = preferencesKey<Boolean>(Constants.LOGIN_STATE_KEY)
             preferences[loginStateKey] ?: false
         }
 
